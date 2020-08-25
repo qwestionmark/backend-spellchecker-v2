@@ -42,4 +42,4 @@ export default {
     Subrace,
     Trait,
     WeaponProperty,
-}
+};

@@ -1,8 +1,10 @@
 import { gql } from 'apollo-server-express';
+import spell from './spell';
  
 const linkSchema = gql`
   type Query {
     _: Boolean
+    test: String!
   }
  
   type Mutation {
@@ -14,4 +16,4 @@ const linkSchema = gql`
   }
 `;
  
-export default [linkSchema];
+export default [linkSchema, spell];
