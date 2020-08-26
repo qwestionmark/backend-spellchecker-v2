@@ -5,7 +5,7 @@
 import 'dotenv/config';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import models from './src/models/_index';
+import models from './db/models/_index';
 import schema from './src/schema/_index';
 import resolvers from './src/resolvers/_index';
 
