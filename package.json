@@ -25,6 +25,6 @@
     "start": "nodemon --exec babel-node start.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Trey",
   "license": "ISC"
 }

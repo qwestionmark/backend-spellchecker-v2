@@ -3,12 +3,11 @@ import { gql } from 'apollo-server-express';
 export default gql`
   extend type Query {
     spells: [Spell!]
-    spell(id: ID!): Spell
+    spell(name: String!): Spell
   }
  
   type Spell {
-    id: ID!
+    index: ID!
     name: String!
-    desc: String!
   }
 `;
