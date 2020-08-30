@@ -12,21 +12,32 @@ import db from './db/run';
 import schema from './src/schema/_index';
 import resolvers from './src/resolvers/_index';
 
-const app = express();
+
 
 // Deconstruct ENV vars for brevity
 const { ROOT_ENDPOINT, PORT } = process.env
 
-const server = new ApolloServer({
-  typeDefs: schema,
-  resolvers,
-  context: {
-      db,
+const start = async () => {
+  const app = express();
+
+  const server = new ApolloServer({
+    typeDefs: schema,
+    resolvers,
+    context: {
+        db: await db,
+    }
+  });
+  
+  server.applyMiddleware({ app, path: ROOT_ENDPOINT });
+
+  try {
+    app.listen({ port: PORT }, () => {
+        console.log(`Server is running at http://localhost:${PORT}${ROOT_ENDPOINT}`);
+    })
+  } finally {
+    await db.close()
   }
-});
+};
 
-server.applyMiddleware({ app, path: ROOT_ENDPOINT });
-
-app.listen({ port: PORT }, () => {
-    console.log(`Server is running at http://localhost:${PORT}${ROOT_ENDPOINT}`);
-});
+// Start it up!
+start().catch(console.dir);
