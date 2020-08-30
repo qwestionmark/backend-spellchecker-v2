@@ -29,6 +29,8 @@ const start = async () => {
 
   const resolvers = fifthEditionQueries(namespaces);
 
+  console.log(namespaces)
+
   const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
