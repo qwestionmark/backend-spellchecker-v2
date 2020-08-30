@@ -8,26 +8,20 @@ const DB_CONNECTION_OPTIONS = {
 }
 
 
-const MongoClient = mongodb.MongoClient;
+const client = mongodb.MongoClient(DATABASE_URL, DB_CONNECTION_OPTIONS);
 
-// Returns Promise to DB connection object or errors out
-const connectDB = async () => {
-  return MongoClient.connect(DATABASE_URL, DB_CONNECTION_OPTIONS, 
-    async (err, client) => {
-      if (err) throw err;
+// Returns Promise to DB connection object or closes connection on error
+async function connectDB() {
+  try {
+    await client.connect();
 
-      // Attempt to access DB
-      const db = client.db(DATABASE_NAME);
-
-      const testDoc = await db.collection('spells').findOne({ name: 'Fireball'})
-      if (testDoc.name !== 'Fireball') console.warn(
-        'DB connection established, but unable to locate spell "Fireball"'
-        )
-
-      console.log("Connected successfully to database server");
-      return db
-    }
-  );
-}
+    console.log("Connected successfully to database server");
+    return await client.db(DATABASE_NAME);
+  } catch {
+    await client.close();
+    console.error('Unable to establish connection with database')
+    process.exit(1)
+  }
+};
 
 export default connectDB;

@@ -11,6 +11,7 @@ import { ApolloServer } from 'apollo-server-express';
 import connectDB from './db/run';
 import schema from './src/schema/_index';
 import resolvers from './src/resolvers/_index';
+import { collectByNamespace } from './src/utils';
 
 
 // Deconstruct ENV vars for brevity
@@ -21,14 +22,15 @@ const { ROOT_ENDPOINT, PORT } = process.env
 const start = async () => {
   const app = express();
 
-  const db = await connectDB();
-  console.log('db', connectDB)
+  const connection = await connectDB();
+
+  const db = await collectByNamespace(connection);
 
   const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
     context: {
-        db,
+        db
     }
   });
   
@@ -40,4 +42,4 @@ const start = async () => {
 };
 
 // Start it up!
-start().catch(console.dir);
+start()
