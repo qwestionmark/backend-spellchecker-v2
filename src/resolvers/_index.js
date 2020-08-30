@@ -1,3 +1,3 @@
-import spell from './spell';
+import queries from './5e_database/queries';
 
-export default [spell];
+export default [queries];
