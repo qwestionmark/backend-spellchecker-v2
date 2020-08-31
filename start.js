@@ -12,7 +12,7 @@ import connectDB from './db/run';
 import schema from './src/schema/_index';
 // import resolvers from './src/resolvers/_index';
 import { collectByNamespace } from './src/utils';
-import { fifthEditionQueries } from './src/resolvers/5e_database/queries';
+import resolvers from './src/resolvers/_index';
 
 
 // Deconstruct ENV vars for brevity
@@ -25,11 +25,7 @@ const start = async () => {
 
   const connection = await connectDB();
 
-  const {db, namespaces} = await collectByNamespace(connection);
-
-  const resolvers = fifthEditionQueries(namespaces);
-
-  console.log(namespaces)
+  const db = await collectByNamespace(connection);
 
   const server = new ApolloServer({
     typeDefs: schema,

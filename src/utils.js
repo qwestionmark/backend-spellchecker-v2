@@ -7,10 +7,10 @@ export async function collectByNamespace(connection) {
     // NOTE: Unsure whether these db collection instances could become stale.
     // should research for optimal solution.
     const collections = await connection.collections()
-    const namespaces = collections.map(doc => {
+    collections.map(doc => {
         const docName = doc.namespace.split('.')[1]
         db[docName] = doc
         return docName
     });
-    return {db, namespaces}
+    return db
 };
