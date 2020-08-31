@@ -2,11 +2,11 @@ import { gql } from 'apollo-server-express';
  
 export default gql`
   extend type Query {
-    languages: [Language!]
-    language(name: String, index: String): Language
+    spellcasting(name: String, index: String): Spellcasting
+    spellcastings: [Spellcasting!]
   }
  
-  type Language {
+  type Spellcasting {
     index: ID!
     name: String!
   }

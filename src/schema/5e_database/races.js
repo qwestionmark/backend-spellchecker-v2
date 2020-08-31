@@ -2,11 +2,11 @@ import { gql } from 'apollo-server-express';
  
 export default gql`
   extend type Query {
-    abilityScores: [AbilityScore!]
-    abilityScore(name: String, index: String): AbilityScore
+    race(name: String, index: String): Race
+    races: [Race!]
   }
  
-  type AbilityScore {
+  type Race {
     index: ID!
     name: String!
   }
