@@ -21,7 +21,6 @@ import subclasses from './5e_database/subclasses';
 import subraces from './5e_database/subraces';
 import traits from './5e_database/traits';
 import weaponProperties from './5e_database/weaponProperties';
-import _subfields from './_subfields'
  
 const linkSchema = gql`
   type Query {
@@ -38,6 +37,6 @@ const linkSchema = gql`
   }
 `;
  
-export default [linkSchema, _subfields, abilityScores, classes, conditions, damageTypes, equipment, equipmentCategories, features, 
+export default [linkSchema, abilityScores, classes, conditions, damageTypes, equipment, equipmentCategories, features, 
 languages, levels, magicSchools, monsters, proficiencies, races, skills, spells, spellcasting, startingEquipment,
 subclasses, subraces, traits, weaponProperties];
