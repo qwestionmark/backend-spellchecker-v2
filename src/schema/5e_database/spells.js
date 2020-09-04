@@ -9,5 +9,18 @@ export default gql`
   type Spell {
     index: ID!
     name: String!
+    desc: [String!]
+    range: String!
+    components: [String]!
+    material: String!
+    ritual: Boolean!
+    duration: String!
+    casting_time: String!
+    level: Int!
+    attack_type: String!
+    damage: Damage!
+    classes: [Class!]
+    school: String!
+    subclasses: [Subclass!]
   }
 `;
