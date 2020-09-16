@@ -13,14 +13,13 @@ const ordinalNumbers = {
 export default {
   Spell: {
     damage_at_slot_level: (parent) => {
-      const slots = parent.damage_at_slot_level;
+      const slots = parent.damage.damage_at_slot_level;
       console.log(Object.keys(parent));
       if (!slots) return null;
       const formattedSlots = {};
       Object.keys(slots).forEach(
         (key) => (formattedSlots[ordinalNumbers[key]] = slots[key])
       );
-      return { first: "hi" };
       return formattedSlots;
     },
   },
