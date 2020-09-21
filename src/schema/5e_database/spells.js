@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 
 export default gql`
   extend type Query {
-    spells: [Spell!]
+    spells(offset: Int, limit: Int): [Spell!]
     spell(name: String, index: String): Spell
   }
 
@@ -17,12 +17,15 @@ export default gql`
     duration: String!
     castingTime: String!
     level: Int!
-    attack_type: String
+    attackType: String
     damageType: String!
-    classes: [String!]
+    classes: [String!]!
     school: String!
     subclasses: [String!]
     damageAtSlotLevel: DamageAtSlotLevel
+    higherLevel: String
+    areaOfEffect: AreaOfEffect
+    dc: DC
   }
   type DamageAtSlotLevel {
     first: String
@@ -34,6 +37,14 @@ export default gql`
     seventh: String
     eighth: String
     ninth: String
+  }
+  type AreaOfEffect {
+    type: String
+    size: Int
+  }
+  type DC {
+    dcType: String
+    dcSucces: String
   }
 `;
 

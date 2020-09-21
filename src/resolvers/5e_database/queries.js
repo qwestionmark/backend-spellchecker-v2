@@ -93,8 +93,12 @@ export default {
     spell: async (_, args, { db }) => {
       return await db.spells.findOne(args);
     },
-    spells: async (_, __, { db }) => {
-      return await db.spells.find().toArray();
+    spells: async (_, { limit = 0, offset = 0 }, { db }) => {
+      return await db.spells
+        .find()
+        .limit(limit)
+        .skip(offset * limit)
+        .toArray();
     },
     startingEquipment: async (_, args, { db }) => {
       return await db.startingequipment.findOne(args);
