@@ -12,9 +12,8 @@ const ordinalNumbers = {
 
 export default {
   Spell: {
-    damage_at_slot_level: (parent) => {
+    damageAtSlotLevel: (parent) => {
       const slots = parent.damage.damage_at_slot_level;
-      console.log(Object.keys(parent));
       if (!slots) return null;
       const formattedSlots = {};
       Object.keys(slots).forEach(
@@ -22,5 +21,11 @@ export default {
       );
       return formattedSlots;
     },
+    // Single description string are contained within array
+    desc: (parent) => parent.desc[0],
+    damageType: (parent) => parent.damage.damage_type.name,
+    school: (parent) => parent.school.name,
+    classes: (parent) => parent.classes.map((klass) => klass.name),
+    subclasses: (parent) => parent.subclasses.map((klass) => klass.name),
   },
 };

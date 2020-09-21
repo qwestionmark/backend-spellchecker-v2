@@ -9,26 +9,20 @@ export default gql`
   type Spell {
     index: ID!
     name: String!
-    desc: [String!]
+    desc: String!
     range: String!
     components: [String]!
-    material: String!
+    material: String
     ritual: Boolean!
     duration: String!
-    casting_time: String!
+    castingTime: String!
     level: Int!
-    attack_type: String!
-    damage: Damage!
-    classes: [Class!]
-    school: MagicSchool!
-    subclasses: [MagicSubclass!]
-    damage_at_slot_level: DamageAtSlotLevel
-  }
-  type Damage {
-    damage_type: DamageType!
-  }
-  type MagicSubclass {
-    name: String!
+    attack_type: String
+    damageType: String!
+    classes: [String!]
+    school: String!
+    subclasses: [String!]
+    damageAtSlotLevel: DamageAtSlotLevel
   }
   type DamageAtSlotLevel {
     first: String
