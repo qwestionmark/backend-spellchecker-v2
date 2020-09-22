@@ -9,7 +9,7 @@ export default gql`
   type Spell {
     index: ID!
     name: String!
-    desc: String!
+    desc: [String!]!
     range: String!
     components: [String]!
     material: String
@@ -18,7 +18,7 @@ export default gql`
     castingTime: String!
     level: Int!
     attackType: String
-    damageType: String!
+    damageType: String
     classes: [String!]!
     school: String!
     subclasses: [String!]
@@ -43,7 +43,7 @@ export default gql`
     size: Int
   }
   type DC {
-    dcType: String
-    dcSucces: String
+    type: String
+    success: String
   }
 `;
