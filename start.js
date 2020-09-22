@@ -3,22 +3,21 @@
 
 // Package imports
 // NOTE: KEEP DOTENV AS FIRST IMPORT :D
-import 'dotenv/config';
-import express from 'express';
-import { ApolloServer } from 'apollo-server-express';
+import "dotenv/config";
+import express from "express";
+import { ApolloServer } from "apollo-server-express";
+import DataLoader from "dataloader";
 
 // Local imports
-import connectDB from './db/run';
-import schema from './src/schema/_index';
-// import resolvers from './src/resolvers/_index';
-import { collectByNamespace } from './src/utils';
-import resolvers from './src/resolvers/_index';
-
+import connectDB from "./db/run";
+import schema from "./src/schema/_index";
+import { collectByNamespace } from "./src/utils";
+import resolvers from "./src/resolvers/_index";
 
 // Deconstruct ENV vars for brevity
-const { ROOT_ENDPOINT, PORT } = process.env
+const { ROOT_ENDPOINT, PORT } = process.env;
 
-// NOTE: start() context used instead of global nodejs scope to allow 
+// NOTE: start() context used instead of global nodejs scope to allow
 // async loading of DB connection
 const start = async () => {
   const app = express();
@@ -31,16 +30,18 @@ const start = async () => {
     typeDefs: schema,
     resolvers,
     context: {
-        db
-    }
+      db,
+    },
   });
-  
+
   server.applyMiddleware({ app, path: ROOT_ENDPOINT });
 
   app.listen({ port: PORT }, () => {
-      console.log(`Graphql server is running at http://localhost:${PORT}${ROOT_ENDPOINT}`);
-  })
+    console.log(
+      `Graphql server is running at http://localhost:${PORT}${ROOT_ENDPOINT}`
+    );
+  });
 };
 
 // Start it up!
-start()
+start();

@@ -47,6 +47,3 @@ export default gql`
     dcSucces: String
   }
 `;
-
-// TODO: create schema type and resolver for damage_at_slot_level
-// and int cannot be used as a key in type and snakecase field should become camelcase
