@@ -19,7 +19,8 @@
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.0",
     "eslint": "^7.5.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "webpack-bundle-analyzer": "^3.9.0"
   },
   "scripts": {
     "start": "nodemon --exec babel-node start.js",

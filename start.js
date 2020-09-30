@@ -6,7 +6,7 @@
 import "dotenv/config";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
-import DataLoader from "dataloader";
+// import DataLoader from "dataloader";
 
 // Local imports
 import connectDB from "./db/run";
